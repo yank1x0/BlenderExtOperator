@@ -25,13 +25,6 @@ class GeneralMethods:
 		list2=sorted(list)
 		return list2[len(list2)//2]
 
-	def compareStrings(str1,str2):
-		if len(str1)!=len(str2):
-			return False
-		for i in range(0,len(str1)):
-			if str1[i]!=str2[i]:
-				return False
-		return True
 
 	def abs(val):
 		if val<0.0:
@@ -80,8 +73,9 @@ class GeneralMethods:
 
 	def removeDoublesInList(list):
 		result=[]
+		hash={}
 		for ind in range(0,len(list)):
-			if not GeneralMethods.isPresentInList(list[ind],result):
+			if not list[ind] in hash:
 				result+=[list[ind]]
 		return result
 
@@ -93,28 +87,8 @@ class GeneralMethods:
 				return True
 		return False
 
-	def getMinDistance3D(coordsList1,coordsList2):
-		diff=coordsList2[0]-coordsList1[0]
-		minDist=numpy.linalg.norm(diff)
-		for coords1 in coordsList1:
-			for coords2 in coordsList2:
-				diff=coords2-coords1
-				dist=numpy.linalg.norm(diff)
-				if dist<minDist:
-					minDist=dist
-		return minDist
-
-	def getMinDistance2D(coordsList1,coordsList2):
-		minDist=GeneralMethods.distBetween2Points(coordsList1[0],coordsList2[0])
-		for coords1 in coordsList1:
-			for coords2 in coordsList2:
-				dist=GeneralMethods.distBetween2Points(coords1,coords2)
-				if dist<minDist:
-					minDist=dist
-		return minDist
 
 	def distBetween2Points(point1,point2):
-		sum=0
 		sum=pow(point2[0]-point1[0],2)+pow(point2[1]-point1[1],2)
 		return sqrt(sum)
 
